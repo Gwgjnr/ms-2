@@ -3,7 +3,7 @@ const ctx = cvs.getContext("2d");
 
 const row = 10;
 const col = 50;
-const sq = 40;
+const sq = 50;
 const vacant = 'white';
 
 function drawsquare(x,y,_color){
@@ -31,3 +31,4 @@ function drawBoard(){
 }
 
 drawBoard();
+
