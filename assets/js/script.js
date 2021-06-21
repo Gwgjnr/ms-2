@@ -32,3 +32,11 @@ function drawBoard(){
 
 drawBoard();
 
+let blocks = [
+    ['blue'],
+    ['yellow'],
+    ['green'],
+    ['orange'],
+    ['red'],
+    ['purple']    
+]
