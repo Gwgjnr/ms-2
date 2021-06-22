@@ -1,12 +1,52 @@
-const blue = [1];
+const blue = [
+   [
+    [0,0,0],
+    [0,1,0],
+    [0,0,0],
+   ] 
+];
 
-const yellow = [1];
+const yellow = [
+    [
+     [0,0,0],
+     [0,1,0],
+     [0,0,0],
+    ] 
+ ];
+ 
+const green = [
+    [
+     [0,0,0],
+     [0,1,0],
+     [0,0,0],
+    ] 
+ ];
+ 
 
-const green = [1];
+const orange = [
+    [
+     [0,0,0],
+     [0,1,0],
+     [0,0,0],
+    ] 
+ ];
+ 
 
-const orange = [1];
+const red = [
+    [
+     [0,0,0],
+     [0,1,0],
+     [0,0,0],
+    ] 
+ ];
+ 
 
-const red = [1];
-
-const purple = [1];
+const purple = [
+    [
+     [0,0,0],
+     [0,1,0],
+     [0,0,0],
+    ] 
+ ];
+ 
 

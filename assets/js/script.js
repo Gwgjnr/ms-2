@@ -6,8 +6,8 @@ const col = 50;
 const sq = 50;
 const vacant = 'white';
 
-function drawsquare(x,y,color){
-    ctx.fillStyle = 'white';
+function drawSquare(x,y,color){
+    ctx.fillStyle = color;
     ctx.fillRect(x*sq,y*sq,sq,sq);
 
     ctx.strokeStyle = 'black';
@@ -25,7 +25,7 @@ for( r = 0; r < row; r++){
 function drawBoard(){
     for( r = 0; r < row; r++){
         for(c = 0; c < col; c++){
-            drawsquare(c,r,board[r][c]);
+            drawSquare(c,r,board[r][c]);
         }
     }
 }
@@ -46,7 +46,138 @@ function randomPiece(){
     return new Piece( blocks[r][0],blocks[r][1]);
 }
 
-Function block(piece, color){
+let p = randomPiece(); // might remove later
 
+function Piece(blockPiece, color){
+    this.blockPiece = blockPiece;
+    this.color = color;
+
+    this.blockPieceN = 0;
+    this.activeBlockPiece = this.blockPiece[this.blockPieceN];
+
+    this.x = 1;
+    this.y = -1;
 }
 
+Piece.prototype.fill = function(color){
+    for( r = 0; r < this.activeBlockPiece.length; r++){
+        for(c = 0; c < this.activeBlockPiece.length; c++){
+            
+            if( this.activeBlockPiece[r][c]){
+                drawSquare(this.x + c,this.y + r, color);
+            }
+        }
+    }
+}
+
+
+Piece.prototype.draw = function(){
+    this.fill(this.color);
+}
+
+
+
+Piece.prototype.unDraw = function(){
+    this.fill(vacant);
+}
+
+Piece.prototype.moveDown = function(){
+        this.unDraw();
+        this.y++;
+        this.draw();    
+}
+
+function drop(){
+    p.moveDown();
+    requestAnimationFrame(drop);
+}
+
+Piece.prototype.moveRight = function(){
+        this.unDraw();
+        this.x++;
+        this.draw();
+}
+
+Piece.prototype.moveLeft = function(){
+        this.unDraw();
+        this.x--;
+        this.draw();
+}
+
+Piece.prototype.collision = function(x,y,piece){
+    for( r = 0; r < piece.length; r++){
+        for(c = 0; c < piece.length; c++){
+            // if the square is empty, we skip it
+            if(!piece[r][c]){
+                continue;
+            }
+            // coordinates of the piece after movement
+            let newX = this.x + c + x;
+            let newY = this.y + r + y;
+            
+            // conditions
+            if(newX < 0 || newX >= col || newY >= row){
+                return true;
+            }
+            // skip newY < 0; board[-1] will crush our game
+            if(newY < 0){
+                continue;
+            }
+            // check if there is a locked piece alrady in place
+            if( board[newY][newX] != vacant){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+Piece.prototype.lock = function(){
+    for( r = 0; r < this.activeBlockPiece.length; r++){
+        for(c = 0; c < this.activeBlockPiece.length; c++){
+
+            if( !this.activeBlockPiece[r][c]){
+                continue;
+            }
+            if(this.y + r < 0){
+                alert("Game Over");
+                // stop request animation frame
+                gameOver = true;
+                break;
+            }
+            // we lock the piece
+            board[this.y+r][this.x+c] = this.color;
+        }
+    }
+}
+document.addEventListener("keydown",CONTROL);
+
+function CONTROL(event){
+    if(event.keyCode == 37){
+        p.moveLeft();
+        dropStart = Date.now();
+    }else if(event.keyCode == 39){
+        p.moveRight();
+        dropStart = Date.now();
+    }else if(event.keyCode == 40){
+        p.moveDown();
+    }
+}
+
+let dropStart = Date.now();
+let gameOver = false;
+function drop(){
+    let now = Date.now();
+    let delta = now - dropStart;
+    if(delta > 500){
+        p.moveDown();
+        dropStart = Date.now();
+    }
+    if( !gameOver){
+        requestAnimationFrame(drop);
+    }
+}
+
+p.draw();
+
+drop();
