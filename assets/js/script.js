@@ -1,8 +1,8 @@
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext("2d");
 
-const row = 10;
-const col = 50;
+const row = 8;
+const col = 5;
 const sq = 50;
 const vacant = 'white';
 
@@ -81,27 +81,40 @@ Piece.prototype.unDraw = function(){
     this.fill(vacant);
 }
 
-Piece.prototype.moveDown = function(){
-        this.unDraw();
-        this.y++;
-        this.draw();    
-}
-
 function drop(){
     p.moveDown();
     requestAnimationFrame(drop);
 }
 
+Piece.prototype.moveDown = function(){
+    if(!this.collision(0,1,this.activeBlockPiece)){
+        this.unDraw();
+        this.y++;
+        this.draw();
+    }else{
+        // we lock the piece and generate a new one
+        this.lock();
+        p = randomPiece();
+    }
+    
+}
+
+// move Right the piece
 Piece.prototype.moveRight = function(){
+    if(!this.collision(1,0,this.activeBlockPiece)){
         this.unDraw();
         this.x++;
         this.draw();
+    }
 }
 
+// move Left the piece
 Piece.prototype.moveLeft = function(){
+    if(!this.collision(-1,0,this.activeBlockPiece)){
         this.unDraw();
         this.x--;
         this.draw();
+    }
 }
 
 Piece.prototype.collision = function(x,y,piece){
@@ -177,7 +190,5 @@ function drop(){
         requestAnimationFrame(drop);
     }
 }
-
-p.draw();
 
 drop();
