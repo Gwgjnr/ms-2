@@ -46,7 +46,7 @@ function randomPiece(){
     return new Piece( blocks[r][0],blocks[r][1]);
 }
 
-let p = randomPiece(); // might remove later
+let p = randomPiece();
 
 function Piece(blockPiece, color){
     this.blockPiece = blockPiece;
@@ -70,12 +70,9 @@ Piece.prototype.fill = function(color){
     }
 }
 
-
 Piece.prototype.draw = function(){
     this.fill(this.color);
 }
-
-
 
 Piece.prototype.unDraw = function(){
     this.fill(vacant);
@@ -92,14 +89,13 @@ Piece.prototype.moveDown = function(){
         this.y++;
         this.draw();
     }else{
-        // we lock the piece and generate a new one
+        
         this.lock();
         p = randomPiece();
     }
     
 }
 
-// move Right the piece
 Piece.prototype.moveRight = function(){
     if(!this.collision(1,0,this.activeBlockPiece)){
         this.unDraw();
@@ -108,7 +104,6 @@ Piece.prototype.moveRight = function(){
     }
 }
 
-// move Left the piece
 Piece.prototype.moveLeft = function(){
     if(!this.collision(-1,0,this.activeBlockPiece)){
         this.unDraw();
@@ -120,23 +115,20 @@ Piece.prototype.moveLeft = function(){
 Piece.prototype.collision = function(x,y,piece){
     for( r = 0; r < piece.length; r++){
         for(c = 0; c < piece.length; c++){
-            // if the square is empty, we skip it
             if(!piece[r][c]){
                 continue;
             }
-            // coordinates of the piece after movement
+            
             let newX = this.x + c + x;
             let newY = this.y + r + y;
             
-            // conditions
             if(newX < 0 || newX >= col || newY >= row){
                 return true;
             }
-            // skip newY < 0; board[-1] will crush our game
             if(newY < 0){
                 continue;
             }
-            // check if there is a locked piece alrady in place
+            
             if( board[newY][newX] != vacant){
                 return true;
             }
@@ -154,18 +146,16 @@ Piece.prototype.lock = function(){
             }
             if(this.y + r < 0){
                 alert("Game Over");
-                // stop request animation frame
                 gameOver = true;
                 break;
             }
-            // we lock the piece
             board[this.y+r][this.x+c] = this.color;
         }
     }
 }
-document.addEventListener("keydown",CONTROL);
+document.addEventListener("keydown",control);
 
-function CONTROL(event){
+function control(event){
     if(event.keyCode == 37){
         p.moveLeft();
         dropStart = Date.now();
@@ -182,7 +172,7 @@ let gameOver = false;
 function drop(){
     let now = Date.now();
     let delta = now - dropStart;
-    if(delta > 500){
+    if(delta > 100){
         p.moveDown();
         dropStart = Date.now();
     }
