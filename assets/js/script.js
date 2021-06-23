@@ -159,6 +159,9 @@ Piece.prototype.lock = function(){
         let fiveColorRow = true;
         for( c = 0; c < col; c++){
             fiveColorRow = fiveColorRow && (board[r][c] != vacant);
+
+        //  && ((board[r][c] = "red") || (board[r][c] = "blue") || 
+        // (board[r][c] = "yellow") || (board[r][c] = "orange") || (board[r][c] = "green") || (board[r][c] = "purple")
         }
  
         if(fiveColorRow){
@@ -193,7 +196,7 @@ let gameOver = false;
 function drop(){
     let now = Date.now();
     let delta = now - dropStart;
-    if(delta > 100){
+    if(delta > 1000){
         p.moveDown();
         dropStart = Date.now();
     }

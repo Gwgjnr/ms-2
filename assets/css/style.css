@@ -26,6 +26,7 @@ h2 {
 }
 
 #instructions {
+    padding-left: 2%;
     padding-top: 30px;
     width: 33%;
     float: left; 
