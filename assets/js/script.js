@@ -4,13 +4,13 @@ const ctx = canvas.getContext("2d");
 const row = 8;
 const col = 5;
 const sq = 50;
-const vacant = 'aquamarine';
+const vacant = 'white';
 
 function drawSquare(x,y,color){
     ctx.fillStyle = color;
     ctx.fillRect(x*sq,y*sq,sq,sq);
 
-    ctx.strokeStyle = 'aquamarine';
+    ctx.strokeStyle = 'white';
     ctx.strokeRect(x*sq,y*sq,sq,sq);
 }
 
@@ -152,11 +152,15 @@ Piece.prototype.lock = function(){
             board[this.y+r][this.x+c] = this.color;
         }
     }
+
+    // code for removing full row and then adding new vacant row at top
+
     for(r = 0; r < row; r++){
         let fiveColorRow = true;
         for( c = 0; c < col; c++){
             fiveColorRow = fiveColorRow && (board[r][c] != vacant);
         }
+ 
         if(fiveColorRow){
             for( y = r; y > 1; y--){
                 for( c = 0; c < col; c++){

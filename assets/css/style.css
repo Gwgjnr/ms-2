@@ -6,3 +6,11 @@
 body {
     background-color: aquamarine;
 }
+
+h1 {
+    font-family: Oswald, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: #252525;
+    margin:0 auto;
+}
