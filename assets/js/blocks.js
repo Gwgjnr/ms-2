@@ -49,4 +49,14 @@ const purple = [
     ] 
  ];
  
+const blueColor = "blue"
 
+const yellowColor = "yellow"
+
+const greenColor = "green"
+
+const orangeColor = "orange"
+
+const redColor = "red"
+
+const purpleColor = "purple"

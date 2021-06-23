@@ -152,6 +152,7 @@ Piece.prototype.lock = function(){
             board[this.y+r][this.x+c] = this.color;
         }
     }
+    drawBoard();
 }
 document.addEventListener("keydown",control);
 
@@ -172,7 +173,7 @@ let gameOver = false;
 function drop(){
     let now = Date.now();
     let delta = now - dropStart;
-    if(delta > 100){
+    if(delta > 500){
         p.moveDown();
         dropStart = Date.now();
     }
