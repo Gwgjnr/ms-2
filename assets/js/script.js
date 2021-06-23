@@ -193,7 +193,7 @@ let gameOver = false;
 function drop(){
     let now = Date.now();
     let delta = now - dropStart;
-    if(delta > 500){
+    if(delta > 100){
         p.moveDown();
         dropStart = Date.now();
     }

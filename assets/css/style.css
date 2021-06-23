@@ -12,7 +12,7 @@ h1 {
     text-transform: uppercase;
     letter-spacing: 4px;
     color: #252525;
-    margin-left: 42%;
+    margin-left: 43%;
     margin-top: 2%;
 }
 
@@ -26,8 +26,18 @@ h2 {
 }
 
 #instructions {
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #252525;
-    margin-left: 2%;
+    padding-top: 30px;
+    width: 33%;
+    float: left; 
+}
+
+#score {
+    padding-top: 30px;
+    width: 33%;
+    float: right;    
+}
+
+#gameHolder {
+    width: 33%;
+    margin: 0 auto;
 }
