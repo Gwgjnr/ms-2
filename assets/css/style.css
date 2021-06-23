@@ -12,5 +12,22 @@ h1 {
     text-transform: uppercase;
     letter-spacing: 4px;
     color: #252525;
-    margin:0 auto;
+    margin-left: 42%;
+    margin-top: 2%;
+}
+
+h2 {
+    font-family: Oswald, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #252525;
+    margin-left: 2%;
+    margin-bottom: 2%;
+}
+
+#instructions {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #252525;
+    margin-left: 2%;
 }
