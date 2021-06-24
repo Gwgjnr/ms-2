@@ -32,10 +32,11 @@ h2 {
     float: left; 
 }
 
-#score {
+#timer-holder {
     padding-top: 30px;
     width: 33%;
-    float: right;    
+    float: right;  
+
 }
 
 #gameHolder {

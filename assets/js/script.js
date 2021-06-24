@@ -1,5 +1,7 @@
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext("2d");
+const scoreVar = document.getElementById('timer');
+let seconds = 0;
 
 const row = 8;
 const col = 5;
@@ -40,6 +42,15 @@ let blocks = [
     [red, 'red'],
     [purple, 'purple']    
 ];
+
+function incrementSeconds() {
+    if(!gameOver) {
+        seconds += 1;
+        timer.innerText = "Timer: " + seconds + " seconds.";
+    }
+}
+
+let cancel = setInterval(incrementSeconds, 1000);
 
 function randomPiece(){
     let r = randomN = Math.floor(Math.random() * blocks.length)
@@ -137,6 +148,8 @@ Piece.prototype.collision = function(x,y,piece){
     return false;
 }
 
+let score = 0;
+
 Piece.prototype.lock = function(){
     for( r = 0; r < this.activeBlockPiece.length; r++){
         for(c = 0; c < this.activeBlockPiece.length; c++){
@@ -229,6 +242,6 @@ function drop(){
 }
 
 drop();
-
+incrementSeconds();
 
 
