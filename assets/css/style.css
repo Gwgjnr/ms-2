@@ -43,3 +43,7 @@ h2 {
     width: 33%;
     margin: 0 auto;
 }
+
+#button-holder {
+    display: block;
+}

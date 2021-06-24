@@ -186,17 +186,18 @@ Piece.prototype.lock = function(){
                 board[0][c] = vacant;
             }
         }
-    } /*
+    }
     for(c = 0; c < col; c++){
         let fiveColorCol = true;
         let firstColColor = board[7][c];
-        for( r = 3; r < row; r++){
+        console.log(fiveColorCol)
+        for( r = 0; r < row; r++){
             if(firstColColor = !board[r][c]){
                 fiveColorCol = false;
             }
         }
-        fiveColorCol = fiveColorCol && (board[7][c] != vacant);
-        console.log(fiveColorCol)
+        fiveColorCol = fiveColorCol && (board[r][c] != vacant);
+        /*
 
         if(fiveColorCol){
             for( y = c; y > -1; y++){
@@ -207,8 +208,8 @@ Piece.prototype.lock = function(){
             for( r = 0; c < col; c++){
                 board[r][0] = vacant;
             }
-        }
-    } */
+        } */
+    }
     drawBoard();
 }
 document.addEventListener("keydown",control);
