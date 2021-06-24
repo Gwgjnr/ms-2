@@ -46,7 +46,7 @@ let blocks = [
 function incrementSeconds(){
     if(!gameOver){
         seconds += 1;
-        timer.innerText = "Timer: " + seconds + " seconds.";
+        timer.innerText = seconds + " seconds.";
     }
 
 }
@@ -176,7 +176,6 @@ Piece.prototype.lock = function(){
             
         }
         fiveColorRow = fiveColorRow && (board[r][c] != vacant);
- 
         if(fiveColorRow){
             for( y = r; y > 1; y--){
                 for( c = 0; c < col; c++){
@@ -188,27 +187,27 @@ Piece.prototype.lock = function(){
             }
         }
     // code for removing full column if colors match
-    }
+    } /*
     for(c = 0; c < col; c++){
         let fiveColorCol = true;
         let firstColColor = board[7][c];
-            for( r = 3; r < row; r++){
-            if(fiveColorCol = firstColColor && (board[r][c] != vacant)){
+            for( r = 0; r < row; r++){
+            if(firstColColor != board[r][c]){
                 fiveColorCol = false;
             }
+            fiveColorCol = fiveColorCol && (board[r][c] != vacant);
         }
-        
         if(fiveColorCol){
             for( y = c; y > 1; y--){
                 for( r = 0; r < row; r++){
                     board[r][y] = board[r][y-1];
                 }
             }
-            for( r = 0; c < row; r++){
+            for( r = 0; r < row; r++){
                 board[r][0] = vacant;
             }
         }
-    }
+    } */
     drawBoard();
 }
 document.addEventListener("keydown",control);
