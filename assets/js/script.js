@@ -43,14 +43,12 @@ let blocks = [
     [purple, 'purple']    
 ];
 
-function incrementSeconds() {
-    if(!gameOver) {
+function incrementSeconds(){
         seconds += 1;
         timer.innerText = "Timer: " + seconds + " seconds.";
-    }
 }
 
-let cancel = setInterval(incrementSeconds, 1000);
+
 
 function randomPiece(){
     let r = randomN = Math.floor(Math.random() * blocks.length)
@@ -240,8 +238,5 @@ function drop(){
         requestAnimationFrame(drop);
     }
 }
-
-drop();
-incrementSeconds();
 
 
