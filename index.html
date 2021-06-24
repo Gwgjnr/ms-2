@@ -27,7 +27,7 @@
     </div>
     <div>   
        <div id ="timer-holder">
-           <span id ="timer"></span>
+           <div>Timer: <span id ="timer"></span></div>
        </div> 
     </div>
     <div id = "gameHolder">
@@ -35,11 +35,9 @@
             A game designed with Javascript.
         </canvas>
     </div>
-    <footer>
-        <div id = "button-holder">
-            <input id="playGame" type="button" value="Start" onclick="drop(); setInterval(incrementSeconds, 1000);" />
-        </div>
-    </footer>
+    <div id = "button-holder">
+        <input id="playGame" class= "button" type="button" value="Start" onclick="drop(); setInterval(incrementSeconds, 1000);" />
+    </div>
 <script src="assets/js/blocks.js"></script>
 <script src="assets/js/script.js"></script>
 </body>

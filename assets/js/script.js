@@ -44,11 +44,12 @@ let blocks = [
 ];
 
 function incrementSeconds(){
+    if(!gameOver){
         seconds += 1;
         timer.innerText = "Timer: " + seconds + " seconds.";
+    }
+
 }
-
-
 
 function randomPiece(){
     let r = randomN = Math.floor(Math.random() * blocks.length)
@@ -186,29 +187,27 @@ Piece.prototype.lock = function(){
                 board[0][c] = vacant;
             }
         }
+    // code for removing full column if colors match
     }
     for(c = 0; c < col; c++){
         let fiveColorCol = true;
         let firstColColor = board[7][c];
-        console.log(fiveColorCol)
-        for( r = 0; r < row; r++){
-            if(firstColColor = !board[r][c]){
+            for( r = 3; r < row; r++){
+            if(fiveColorCol = firstColColor && (board[r][c] != vacant)){
                 fiveColorCol = false;
             }
         }
-        fiveColorCol = fiveColorCol && (board[r][c] != vacant);
-        /*
-
+        
         if(fiveColorCol){
-            for( y = c; y > -1; y++){
+            for( y = c; y > 1; y--){
                 for( r = 0; r < row; r++){
                     board[r][y] = board[r][y-1];
                 }
             }
-            for( r = 0; c < col; c++){
+            for( r = 0; c < row; r++){
                 board[r][0] = vacant;
             }
-        } */
+        }
     }
     drawBoard();
 }
@@ -231,7 +230,7 @@ let gameOver = false;
 function drop(){
     let now = Date.now();
     let delta = now - dropStart;
-    if(delta > 1000){
+    if(delta > 500){
         p.moveDown();
         dropStart = Date.now();
     }
