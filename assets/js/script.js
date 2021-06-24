@@ -154,15 +154,16 @@ Piece.prototype.lock = function(){
     }
 
     // code for removing full row and then adding new vacant row at top
-
     for(r = 0; r < row; r++){
         let fiveColorRow = true;
+        let firstRowColor = board[r][0];
         for( c = 0; c < col; c++){
-            fiveColorRow = fiveColorRow && (board[r][c] != vacant);
-
-        //  && ((board[r][c] = "red") || (board[r][c] = "blue") || 
-        // (board[r][c] = "yellow") || (board[r][c] = "orange") || (board[r][c] = "green") || (board[r][c] = "purple")
+            if(firstRowColor != board[r][c]){
+                fiveColorRow = false
+            }
+            
         }
+        fiveColorRow = fiveColorRow && (board[r][c] != vacant);
  
         if(fiveColorRow){
             for( y = r; y > 1; y--){
@@ -206,3 +207,6 @@ function drop(){
 }
 
 drop();
+
+
+
