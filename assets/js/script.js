@@ -4,7 +4,7 @@ const scoreVar = document.getElementById('timer');
 let seconds = 0;
 
 const row = 8;
-const col = 5;
+const col = 4;
 const sq = 50;
 const vacant = 'white';
 
@@ -37,10 +37,7 @@ drawBoard();
 let blocks = [
     [blue, 'blue'],
     [yellow, 'yellow'],
-    [green, 'green'],
-    [orange, 'orange'],
-    [red, 'red'],
-    [purple, 'purple']    
+    [green, 'green'], 
 ];
 
 function incrementSeconds(){
@@ -48,7 +45,6 @@ function incrementSeconds(){
         seconds += 1;
         timer.innerText = seconds + " seconds.";
     }
-
 }
 
 function randomPiece(){
@@ -147,8 +143,6 @@ Piece.prototype.collision = function(x,y,piece){
     return false;
 }
 
-let score = 0;
-
 Piece.prototype.lock = function(){
     for( r = 0; r < this.activeBlockPiece.length; r++){
         for(c = 0; c < this.activeBlockPiece.length; c++){
@@ -166,6 +160,7 @@ Piece.prototype.lock = function(){
     }
 
     // code for removing full row and then adding new vacant row at top
+
     for(r = 0; r < row; r++){
         let fiveColorRow = true;
         let firstRowColor = board[r][0];
@@ -186,28 +181,7 @@ Piece.prototype.lock = function(){
                 board[0][c] = vacant;
             }
         }
-    // code for removing full column if colors match
-    } /*
-    for(c = 0; c < col; c++){
-        let fiveColorCol = true;
-        let firstColColor = board[7][c];
-            for( r = 0; r < row; r++){
-            if(firstColColor != board[r][c]){
-                fiveColorCol = false;
-            }
-            fiveColorCol = fiveColorCol && (board[r][c] != vacant);
-        }
-        if(fiveColorCol){
-            for( y = c; y > 1; y--){
-                for( r = 0; r < row; r++){
-                    board[r][y] = board[r][y-1];
-                }
-            }
-            for( r = 0; r < row; r++){
-                board[r][0] = vacant;
-            }
-        }
-    } */
+    }
     drawBoard();
 }
 document.addEventListener("keydown",control);
@@ -229,7 +203,7 @@ let gameOver = false;
 function drop(){
     let now = Date.now();
     let delta = now - dropStart;
-    if(delta > 500){
+    if(delta > 200){
         p.moveDown();
         dropStart = Date.now();
     }
@@ -237,5 +211,3 @@ function drop(){
         requestAnimationFrame(drop);
     }
 }
-
-
